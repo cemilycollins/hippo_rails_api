@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate
 
   def index
     render json: User.all
