@@ -6,5 +6,5 @@ Rails.application.routes.draw do
 
   post '/login', to: 'auth#login'
 
-  get '/me', to: 'users#show'
+  get '/me', to: 'users#me'
 end

@@ -1,8 +1,8 @@
 class ReviewsController < ApplicationController
-  skip_before_action :authenticate
 
   def create
-    render json: Review.create(review_params)
+    debugger
+    render json: my_current_user.reviews.create(review_params)
   end
 
   def destroy
@@ -13,6 +13,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:id, :hospital_id, :user_id, :body, :rating, :date)
+    params.permit(:id, :hospital_id, :user_id, :body, :rating, :date)
   end
 end
