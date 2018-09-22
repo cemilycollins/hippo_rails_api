@@ -1,7 +1,6 @@
 class ReviewsController < ApplicationController
 
   def create
-    debugger
     render json: my_current_user.reviews.create(review_params)
   end
 
