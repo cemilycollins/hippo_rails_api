@@ -5,8 +5,16 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = Review.find(params[:id])
+    @review = Review.find(review_params[:id])
     render json: @review.destroy
+  end
+
+  def update
+    @review = Review.find(review_params[:id])
+    @review.update(review_params)
+    if @review.save
+      render json: @review, status: :accepted
+    end
   end
 
   private
