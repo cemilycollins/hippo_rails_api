@@ -2,17 +2,17 @@ class HospitalsController < ApplicationController
   skip_before_action :authenticate
 
   def index
-    render json: Hospital.all[0..3].to_json(only: [:id, :name, :street_address, :latitude, :longitude, :city, :state, :zip_code, :rating_average, :phone, :provider_number])
+    render json: Hospital.all[0..3].to_json(only: [:id, :name, :street_address, :latitude, :longitude, :city, :state, :zip_code, :rating_average, :phone, :provider_number, :total_reviews])
   end
 
   def show
-    render json: Hospital.find(params[:id]).to_json(only: [:id, :name, :street_address, :latitude, :longitude, :city, :state, :zip_code, :rating_average, :phone, :provider_number],
+    render json: Hospital.find(params[:id]).to_json(only: [:id, :name, :street_address, :latitude, :longitude, :city, :state, :zip_code, :rating_average, :phone, :provider_number, :total_reviews],
     include: [
         {reviews:
           { only:
               [:id, :hospital_id, :user_id, :body, :rating, :date],
             include:
-              [user: {only: [:name]}]
+              [{user: {only: [:name]}}, {hospital: {only: [:name]}}]
           }
         },
         {hospital_procedures:

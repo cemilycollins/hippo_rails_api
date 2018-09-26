@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate, only: [:index, :create]
   def index
-    render json: User.all.to_json(only: [:name, :type_of, :id, :city, :state, :profile_pic], include: :reviews)
+    render json: User.all.to_json(only: [:name, :type_of, :id, :city, :state, :profile_pic], include: [
+        {reviews:
+          {include:
+            [{user: {only: [:name]}}, {hospital: {only: [:name]}}]
+          }
+        }])
   end
 
   def create
@@ -9,11 +14,21 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: User.find(params[:id])
+    render json: User.find(params[:id]).to_json(only: [:name, :type_of, :id, :city, :state, :profile_pic], include: [
+        {reviews:
+          {include:
+            [{user: {only: [:name]}}, {hospital: {only: [:name]}}]
+          }
+        }])
   end
 
   def me
-    render json: my_current_user.to_json(only: [:name, :email, :type_of, :id, :city, :state, :profile_pic], include: :reviews)
+    render json: my_current_user.to_json(only: [:name, :email, :type_of, :id, :city, :state, :profile_pic], include: [
+        {reviews:
+          {include:
+            [{user: {only: [:name]}}, {hospital: {only: [:name]}}]
+          }
+        }])
   end
 
   def update

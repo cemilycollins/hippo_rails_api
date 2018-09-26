@@ -1,7 +1,8 @@
 class ReviewsController < ApplicationController
 
   def create
-    render json: my_current_user.reviews.create(review_params)
+    render json: my_current_user.reviews.create(review_params).to_json(include:
+      [{user: {only: [:name]}}, {hospital: {only: [:name]}}])
   end
 
   def destroy
@@ -13,7 +14,8 @@ class ReviewsController < ApplicationController
     @review = Review.find(review_params[:id])
     @review.update(review_params)
     if @review.save
-      render json: @review, status: :accepted
+      render json: @review.to_json(include:
+        [{user: {only: [:name]}}, {hospital: {only: [:name]}}]), status: :accepted
     end
   end
 

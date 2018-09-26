@@ -11,4 +11,8 @@ class Hospital < ApplicationRecord
     return arr.inject{ |sum, el| sum + el }.to_f / arr.size
   end
 
+  def total_reviews
+    self.reviews.size
+  end
+
 end
