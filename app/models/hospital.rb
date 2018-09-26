@@ -1,5 +1,8 @@
 class Hospital < ApplicationRecord
   has_many :reviews
+  has_many :hospital_procedures
+
+  validates :name, uniqueness: { scope: :zip_code}
 
   def rating_average
     arr = self.reviews.map do |r|

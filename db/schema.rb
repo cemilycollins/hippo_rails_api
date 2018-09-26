@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_25_210055) do
+ActiveRecord::Schema.define(version: 2018_09_26_142516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "hospital_procedures", force: :cascade do |t|
+    t.integer "hospital_id"
+    t.integer "procedure_id"
+    t.float "average_covered_charges"
+    t.float "average_medicare_payments"
+    t.float "average_total_payments"
+    t.integer "total_discharges"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "hospitals", force: :cascade do |t|
     t.string "name"
@@ -28,6 +39,16 @@ ActiveRecord::Schema.define(version: 2018_09_25_210055) do
     t.datetime "updated_at", null: false
     t.bigint "phone"
     t.integer "provider_number"
+  end
+
+  create_table "procedures", force: :cascade do |t|
+    t.float "nat_avg_cost"
+    t.string "name"
+    t.string "procedure_number_string"
+    t.integer "total_hospitals"
+    t.integer "total_discharges"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
