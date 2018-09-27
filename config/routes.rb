@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :hospitals, only: [:index, :show]
   resources :procedures, only: :show
 
+  get '/hospitalquery', to: 'hospital#location'
+
   post '/login', to: 'auth#login'
 
   get '/me', to: 'users#me'
