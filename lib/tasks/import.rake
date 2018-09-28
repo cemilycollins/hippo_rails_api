@@ -29,7 +29,7 @@ namespace :import do
     client = SODA::Client.new({:domain => "data.cms.gov", :app_token => "2ISI9YURJj5eLDYqH7BAhIexR"})
     counter = 0
 
-    Hospital.all[0..3].each do |hospital|
+    Hospital.all.each do |hospital|
       var = hospital.provider_number
       if var < 100000
         var = "0#{var}"
@@ -37,7 +37,7 @@ namespace :import do
 
       results = client.get("t8zw-d33c", :provider_id => "#{var}")
 
-      if results[0].provider_state == hospital.state
+      if results[0] && results[0].provider_state == hospital.state
         results.each do |record|
           nameArray = record.drg_definition.split(" - ")
           p = Procedure.find_or_create_by(name: nameArray[1]) do |procedure|
