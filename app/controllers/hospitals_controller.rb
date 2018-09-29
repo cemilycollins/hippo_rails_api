@@ -4,18 +4,10 @@ class HospitalsController < ApplicationController
   def index
     render json: Hospital.all[0..3].to_json(only: [:id, :name, :street_address, :latitude, :longitude, :city, :state, :zip_code, :rating_average, :phone, :provider_number, :total_reviews],
     include: [
-        {reviews:
-          { only:
-              [:id, :hospital_id, :user_id, :body, :rating, :date],
-            include:
-              [{user: {only: [:name]}}, {hospital: {only: [:name]}}]
-          }
-        },
+        :reviews,
         {hospital_procedures:
           { only:
-              [:id, :procedure_id, :average_covered_charges, :average_medicare_payments, :average_total_payments, :total_discharges],
-            include:
-              [procedure: {only: [:id, :name, :nat_avg_cost, :total_hospitals]}]
+              [:id, :procedure_id, :average_covered_charges, :average_medicare_payments, :average_total_payments, :total_discharges, :hospital_name, :procedure_name, :nat_avg_cost, :total_hospitals, :hospital_avg_rating, :hospital_city, :hospital_state]
           }
         }
       ])
@@ -24,18 +16,10 @@ class HospitalsController < ApplicationController
   def show
     render json: Hospital.find(params[:id]).to_json(only: [:id, :name, :street_address, :latitude, :longitude, :city, :state, :zip_code, :rating_average, :phone, :provider_number, :total_reviews],
     include: [
-        {reviews:
-          { only:
-              [:id, :hospital_id, :user_id, :body, :rating, :date],
-            include:
-              [{user: {only: [:name]}}, {hospital: {only: [:name]}}]
-          }
-        },
+        :reviews,
         {hospital_procedures:
           { only:
-              [:id, :procedure_id, :average_covered_charges, :average_medicare_payments, :average_total_payments, :total_discharges],
-            include:
-              [procedure: {only: [:id, :name, :nat_avg_cost, :total_hospitals]}]
+              [:id, :procedure_id, :average_covered_charges, :average_medicare_payments, :average_total_payments, :total_discharges, :hospital_name, :procedure_name, :nat_avg_cost, :total_hospitals, :hospital_avg_rating, :hospital_city, :hospital_state]
           }
         }
       ])
