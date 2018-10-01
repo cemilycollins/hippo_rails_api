@@ -31,7 +31,7 @@ namespace :import do
     results.each do |line|
       latitude = nil
       longitude = nil
-      couter = 0
+      counter = 0
       if line.location
         latitude = line.location.coordinates[1]
         longitude = line.location.coordinates[1]
