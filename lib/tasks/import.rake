@@ -31,17 +31,14 @@ namespace :import do
     results.each do |line|
       latitude = nil
       longitude = nil
-      counter = 0
       if line.location
         latitude = line.location.coordinates[1]
         longitude = line.location.coordinates[1]
       end
 
       h = Hospital.create(name: line.hospital_name, street_address: line.address, latitude: latitude, longitude: longitude, city: line.city, state: line.state, zip_code: line.zip_code.to_i, phone: line.phone_number.to_i, provider_number: line.provider_id.to_i)
-
-      counter += 1 if h.persisted?
     end
-    puts "Created #{counter} hospitals"
+    puts "Created #{Hospital.all.length} hospitals"
   end
 
   desc "Import procedure records from API"
