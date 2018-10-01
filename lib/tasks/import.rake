@@ -5,20 +5,40 @@ namespace :import do
 
   desc "Import hospitals from csv"
   task hospitals: :environment do
-    filename = File.join Rails.root, 'Payment_and_value_of_care_-_Hospital.csv'
-    counter = 0
 
-    CSV.foreach(filename, headers: true) do |row|
-      latlng = [nil, nil]
-      if row["Location"].split("(")[1]
-        latlng = row["Location"].split("(")[1].split(", ")
-        latlng[1] = latlng[1].split(")")[0]
-        latlng = latlng.map do |str|
-          str.to_f
-        end
+    # filename = File.join Rails.root, 'Payment_and_value_of_care_-_Hospital.csv'
+    # counter = 0
+    #
+    # CSV.foreach(filename, headers: true) do |row|
+    #   latlng = [nil, nil]
+    #   if row["Location"].split("(")[1]
+    #     latlng = row["Location"].split("(")[1].split(", ")
+    #     latlng[1] = latlng[1].split(")")[0]
+    #     latlng = latlng.map do |str|
+    #       str.to_f
+    #     end
+    #   end
+    #
+    #   h = Hospital.create(name: row["Hospital name"], street_address: row["Address"], latitude: latlng[0], longitude: latlng[1], city: row["City"], state: row["State"], zip_code: row["ZIP Code"].to_i, phone: row["Phone number"].to_i, provider_number: row["Provider ID"].to_i)
+    #   counter += 1 if h.persisted?
+    # end
+    # puts "Created #{counter} hospitals"
+
+    client = SODA::Client.new({:domain => "data.medicare.gov", :app_token => "2ISI9YURJj5eLDYqH7BAhIexR"})
+
+    results = client.get("2kat-xip9", :$limit => 5000)
+
+    results.each do |line|
+      latitude = nil
+      longitude = nil
+      couter = 0
+      if line.location
+        latitude = line.location.coordinates[1]
+        longitude = line.location.coordinates[1]
       end
 
-      h = Hospital.create(name: row["Hospital name"], street_address: row["Address"], latitude: latlng[0], longitude: latlng[1], city: row["City"], state: row["State"], zip_code: row["ZIP Code"].to_i, phone: row["Phone number"].to_i, provider_number: row["Provider ID"].to_i)
+      h = Hospital.create(name: line.hospital_name, street_address: line.address, latitude: latitude, longitude: longitude, city: line.city, state: line.state, zip_code: line.zip_code.to_i, phone: line.phone_number.to_i, provider_number: line.provider_id.to_i)
+
       counter += 1 if h.persisted?
     end
     puts "Created #{counter} hospitals"
