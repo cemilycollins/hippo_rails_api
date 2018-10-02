@@ -13,4 +13,8 @@ class ProceduresController < ApplicationController
         }
       ])
   end
+
+  def index
+    render json: Procedure.find(params[:id]).to_json(only: [:id, :nat_avg_cost, :name, :procedure_number_string, :total_hospitals, :total_discharges])
+  end
 end
