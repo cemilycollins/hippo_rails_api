@@ -45,8 +45,10 @@ namespace :import do
   task procedures: :environment do
     client = SODA::Client.new({:domain => "data.cms.gov", :app_token => "2ISI9YURJj5eLDYqH7BAhIexR"})
     counter = 0
+    hospitalCounter = 1847
 
-    Hospital.all.each do |hospital|
+    while hospitalCounter < 4979
+      hospital = Hospital.find(hospitalCounter)
       var = hospital.provider_number
       if var < 100000
         var = "0#{var}"
@@ -64,6 +66,7 @@ namespace :import do
           counter += 1 if hp.persisted?
         end
       end
+      hospitalCounter += 1
     end
     puts "Created #{counter} procedures"
   end
