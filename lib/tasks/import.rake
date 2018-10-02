@@ -26,7 +26,7 @@ namespace :import do
 
     client = SODA::Client.new({:domain => "data.medicare.gov", :app_token => "2ISI9YURJj5eLDYqH7BAhIexR"})
 
-    results = client.get("2kat-xip9")
+    results = client.get("2kat-xip9", :$limit => 198000)
 
     results.each do |line|
       latitude = nil
