@@ -26,17 +26,12 @@ class HospitalsController < ApplicationController
   end
 
   def location
-    lat_rng = [hospital_params[:lat] - hospital_params[:range], hospital_params[:lat] + hospital_params[:range]]
-    lng_rng = [hospital_params[:lng] - hospital_params[:range], hospital_params[:lng] + hospital_params[:range]]
+    lat_rng = [params[:lat].to_f - params[:range].to_f, params[:lat].to_f + params[:range].to_f]
+    lng_rng = [params[:lng].to_f - params[:range].to_f, params[:lng].to_f + params[:range].to_f]
     newArr = Hospital.all.select do |h|
       h.latitude && h.latitude.between?(*lat_rng) && h.longitude.between?(*lng_rng)
     end
     render json: newArr.to_json(only: [:id, :name, :street_address, :latitude, :longitude, :city, :state, :zip_code, :rating_average, :phone, :provider_number, :total_reviews])
-  end
-
-  private
-  def hospital_params
-    params
   end
 
 end
