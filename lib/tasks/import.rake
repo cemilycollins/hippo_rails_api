@@ -33,7 +33,7 @@ namespace :import do
       longitude = nil
       if line.location
         latitude = line.location.coordinates[1]
-        longitude = line.location.coordinates[1]
+        longitude = line.location.coordinates[0]
       end
 
       h = Hospital.create(name: line.hospital_name, street_address: line.address, latitude: latitude, longitude: longitude, city: line.city, state: line.state, zip_code: line.zip_code.to_i, phone: line.phone_number.to_i, provider_number: line.provider_id.to_i)
