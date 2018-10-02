@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :update, :destroy, :show]
   resources :reviews, only: [:create, :update, :destroy]
   resources :hospitals, only: [:index, :show]
-  resources :procedures, only: :show
+  resources :procedures, only: [:index, :show]
 
   get '/hospitalquery', to: 'hospitals#location'
 
