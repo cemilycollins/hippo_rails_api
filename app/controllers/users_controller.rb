@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     render json: my_current_user.to_json(only: [:name, :email, :type_of, :id, :city, :state, :profile_pic], include: :reviews)
   end
 
+
   def update
     my_current_user.update(user_params)
     if my_current_user.save
