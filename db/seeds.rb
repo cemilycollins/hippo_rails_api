@@ -39,7 +39,7 @@ body = [
   "Fames ac turpis egestas integer. Gravida quis blandit turpis cursus in hac habitasse platea dictumst. Eget nullam non nisi est. Ut tellus elementum sagittis vitae et leo duis ut diam. Venenatis cras sed felis eget velit aliquet sagittis id. Arcu cursus euismod quis viverra nibh cras."
 ]
 
-Hospital.all[10..12].each do |h|
+Hospital.all.each do |h|
   3.times do
     user = User.find_by(name: names[rand(7)])
     Review.create(hospital_id: h.id, user_id: user.id, body: body[rand(5)], rating: random(5), date: dates[rand(3)], user_name: user.name, hospital_name: h.name)
