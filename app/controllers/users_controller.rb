@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def me
-    render json: my_current_user.to_json(only: [:name, :email, :type_of, :id, :city, :state, :profile_pic], include: :reviews)
+    render json: my_current_user.to_json(only: [:name, :email, :type_of, :id, :city, :state, :profile_pic])
   end
 
   def reviews
