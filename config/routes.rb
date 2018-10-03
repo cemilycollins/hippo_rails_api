@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get '/hospitalquery', to: 'hospitals#location'
 
+  get '/userreviews', to: 'users#reviews'
+
   post '/hospitalquery', to: 'hospitals#location'
 
   post '/login', to: 'auth#login'

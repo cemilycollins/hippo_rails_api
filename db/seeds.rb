@@ -29,6 +29,8 @@ dates = [
   Date.new(2016, random(12), random(28))
 ]
 
+names = ["Emily Collins", "Ruby", "Alvaro", "Andres", "Ayana", "Ryan", "Josh"]
+
 body = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Venenatis a condimentum vitae sapien pellentesque habitant morbi tristique. Sed vulputate mi sit amet. Sit amet commodo nulla facilisi nullam vehicula. Faucibus scelerisque eleifend donec pretium.",
@@ -37,9 +39,9 @@ body = [
   "Fames ac turpis egestas integer. Gravida quis blandit turpis cursus in hac habitasse platea dictumst. Eget nullam non nisi est. Ut tellus elementum sagittis vitae et leo duis ut diam. Venenatis cras sed felis eget velit aliquet sagittis id. Arcu cursus euismod quis viverra nibh cras."
 ]
 
-Hospital.all.forEach do |h|
-  3 times do
-    user = User.find(random(7))
+Hospital.all[10..12].each do |h|
+  3.times do
+    user = User.find_by(name: names[rand(7)])
     Review.create(hospital_id: h.id, user_id: user.id, body: body[rand(5)], rating: random(5), date: dates[rand(3)], user_name: user.name, hospital_name: h.name)
   end
 end
