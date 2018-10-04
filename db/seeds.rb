@@ -6,18 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.destroy_all
-# Review.destroy_all
 
-User.create([
-  {name: "Emily Collins", email: "emily@me.com", city: "Arlington", state: "VA", password: "pw", profile_pic: "https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/16938575_10155192865689653_1626084982365907535_n.jpg?_nc_cat=0&oh=69ed9578959bd589b8fdfa8a75a1a5f9&oe=5C61609F", type_of: "user"},
-  {name: "Ruby", email: "ruby@me.com", city: "Washington", state: "DC", password: "pw", profile_pic: "https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/12274462_1234022579947479_6790581198035634889_n.jpg?_nc_cat=105&oh=34e7dc35524c2bd354f6f1441a08e2c8&oe=5C56987A", type_of: "user"},
-  {name: "Alvaro", email: "alvaro@me.com", city: "Alexandria", state: "VA", password: "pw", profile_pic: "https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/39004199_10156397322500619_2042360174491992064_n.jpg?_nc_cat=108&oh=7333e151838e6c4b0abca061602ed6f7&oe=5C5A3DAD", type_of: "user"},
-  {name: "Andres", email: "andres@me.com", city: "Washington", state: "DC", password: "pw", profile_pic: "https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/32960584_458305417959339_2502761465824411648_n.jpg?_nc_cat=111&oh=062577191c3f6c3a9db251abc6e37ac2&oe=5C18B6C2", type_of: "user"},
-  {name: "Ayana", email: "ayana@me.com", city: "Washington", state: "DC", password: "pw", profile_pic: "https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/34091877_2285618728131617_2791456870970163200_n.jpg?_nc_cat=111&oh=8a7b401b5c9644bb73130e6dca8b067b&oe=5C56C878", type_of: "user"},
-  {name: "Ryan", email: "ryan@me.com", city: "Bethesda", state: "MD", password: "pw", profile_pic: "https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/36177165_10156340047595833_1679274969411878912_n.jpg?_nc_cat=104&oh=470255fec9fecfe84ad4ab983c8c42dd&oe=5C1AF533", type_of: "user"},
-  {name: "Josh", email: "josh@me.com", city: "Arlington", state: "VA", password: "pw", profile_pic: "https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/11214225_10102628127652989_4427566781655564597_n.jpg?_nc_cat=105&oh=640a34590d7ef33436a0ea916d55b1b3&oe=5C61F6B9", type_of: "user"}
-  ])
+Review.destroy_all
+
+# User.create([
+#   {name: "Emily Collins", email: "emily@me.com", city: "Arlington", state: "VA", password: "pw", profile_pic: "https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/16938575_10155192865689653_1626084982365907535_n.jpg?_nc_cat=0&oh=69ed9578959bd589b8fdfa8a75a1a5f9&oe=5C61609F", type_of: "user"},
+#   {name: "Ruby", email: "ruby@me.com", city: "Washington", state: "DC", password: "pw", profile_pic: "https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/12274462_1234022579947479_6790581198035634889_n.jpg?_nc_cat=105&oh=34e7dc35524c2bd354f6f1441a08e2c8&oe=5C56987A", type_of: "user"},
+#   {name: "Alvaro", email: "alvaro@me.com", city: "Alexandria", state: "VA", password: "pw", profile_pic: "https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/39004199_10156397322500619_2042360174491992064_n.jpg?_nc_cat=108&oh=7333e151838e6c4b0abca061602ed6f7&oe=5C5A3DAD", type_of: "user"},
+#   {name: "Andres", email: "andres@me.com", city: "Washington", state: "DC", password: "pw", profile_pic: "https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/32960584_458305417959339_2502761465824411648_n.jpg?_nc_cat=111&oh=062577191c3f6c3a9db251abc6e37ac2&oe=5C18B6C2", type_of: "user"},
+#   {name: "Ayana", email: "ayana@me.com", city: "Washington", state: "DC", password: "pw", profile_pic: "https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/34091877_2285618728131617_2791456870970163200_n.jpg?_nc_cat=111&oh=8a7b401b5c9644bb73130e6dca8b067b&oe=5C56C878", type_of: "user"},
+#   {name: "Ryan", email: "ryan@me.com", city: "Bethesda", state: "MD", password: "pw", profile_pic: "https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/36177165_10156340047595833_1679274969411878912_n.jpg?_nc_cat=104&oh=470255fec9fecfe84ad4ab983c8c42dd&oe=5C1AF533", type_of: "user"},
+#   {name: "Josh", email: "josh@me.com", city: "Arlington", state: "VA", password: "pw", profile_pic: "https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/11214225_10102628127652989_4427566781655564597_n.jpg?_nc_cat=105&oh=640a34590d7ef33436a0ea916d55b1b3&oe=5C61F6B9", type_of: "user"}
+#   ])
 
 def random(num)
   rand(num) + 1
