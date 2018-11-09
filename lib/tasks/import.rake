@@ -45,9 +45,9 @@ namespace :import do
   task procedures: :environment do
     client = SODA::Client.new({:domain => "data.cms.gov", :app_token => "2ISI9YURJj5eLDYqH7BAhIexR"})
     counter = 0
-    hospitalCounter = 1847
+    hospitalCounter = 1
 
-    while hospitalCounter < 4979
+    while hospitalCounter < Hospital.all.length + 1
       hospital = Hospital.find(hospitalCounter)
       var = hospital.provider_number
       if var < 100000
@@ -72,3 +72,6 @@ namespace :import do
   end
 
 end
+
+#Total hospitals: 4793
+#
