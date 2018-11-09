@@ -10,6 +10,7 @@ namespace :duplicate do
       hp.total_hospitals = hp.procedure.total_hospitals
       hp.procedure_name = hp.procedure.name
       hp.nat_avg_cost = hp.procedure.nat_avg_cost
+      hp.save
     end
   end
 end

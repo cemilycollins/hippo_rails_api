@@ -14,9 +14,9 @@ class HospitalProcedure < ApplicationRecord
   #   self.hospital.state
   # end
   #
-  # def hospital_avg_rating
-  #   self.hospital.rating_average
-  # end
+  def hospital_avg_rating
+    self.hospital.rating_average
+  end
   #
   # def total_hospitals
   #   self.procedure.total_hospitals
