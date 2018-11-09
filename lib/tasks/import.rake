@@ -56,7 +56,7 @@ namespace :import do
 
       results = client.get("t8zw-d33c", :provider_id => "#{var}")
 
-      if results[0] && results[0].provider_state == hospital.state
+      if results.length > 0 && results[0].provider_state == hospital.state
         results.each do |record|
           nameArray = record.drg_definition.split(" - ")
           p = Procedure.find_or_create_by(name: nameArray[1]) do |procedure|
