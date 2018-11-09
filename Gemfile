@@ -20,6 +20,7 @@ gem 'puma', '~> 3.11'
 gem 'bcrypt', '~> 3.1.7'
 gem 'active_model_serializers'
 gem 'jwt'
+gem 'pry'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
