@@ -71,7 +71,7 @@ namespace :import do
             hospital_name: hospital.name,
             hospital_city: hospital.city,
             hospital_state: hospital.state,
-            procedure_name: procedure.name
+            procedure_name: p.name
           )
           counter += 1 if hp.persisted?
         end
