@@ -62,7 +62,17 @@ namespace :import do
           p = Procedure.find_or_create_by(name: nameArray[1]) do |procedure|
             procedure.procedure_number_string = nameArray[0]
           end
-          hp = HospitalProcedure.create(hospital_id: hospital.id, procedure_id: p.id, average_covered_charges: record.average_covered_charges, average_medicare_payments: record.average_medicare_payments, average_total_payments: record.average_total_payments, total_discharges: record.total_discharges)
+          hp = HospitalProcedure.create(hospital_id: hospital.id,
+            procedure_id: p.id,
+            average_covered_charges: record.average_covered_charges,
+            average_medicare_payments: record.average_medicare_payments,
+            average_total_payments: record.average_total_payments,
+            total_discharges: record.total_discharges,
+            hospital_name: hospital.name,
+            hospital_city: hospital.city,
+            hospital_state: hospital.state,
+            procedure_name: procedure.name
+          )
           counter += 1 if hp.persisted?
         end
       end
