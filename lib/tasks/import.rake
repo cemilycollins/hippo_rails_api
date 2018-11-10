@@ -56,6 +56,10 @@ namespace :import do
 
       results = client.get("t8zw-d33c", :provider_id => "#{var}")
 
+      if hospitalCounter == 3332
+        results = results[10..results.length - 1]
+      end
+
       if results.length > 0 && results[0].provider_state == hospital.state
         results.each do |record|
           nameArray = record.drg_definition.split(" - ")
