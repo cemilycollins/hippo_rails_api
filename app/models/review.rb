@@ -17,4 +17,5 @@ class Review < ApplicationRecord
   # def hospital_name
   #   self.hospital.name
   # end
+  
 end
