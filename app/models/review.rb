@@ -10,11 +10,11 @@ class Review < ApplicationRecord
     end
   end
 
-  def user_name
-    self.user.name
-  end
-
-  def hospital_name
-    self.hospital.name
-  end
+  # def user_name
+  #   self.user.name
+  # end
+  #
+  # def hospital_name
+  #   self.hospital.name
+  # end
 end
