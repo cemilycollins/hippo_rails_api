@@ -45,7 +45,7 @@ namespace :import do
   task procedures: :environment do
     client = SODA::Client.new({:domain => "data.cms.gov", :app_token => "2ISI9YURJj5eLDYqH7BAhIexR"})
     counter = 0
-    hospitalCounter = 3332
+    hospitalCounter = 0
 
     while hospitalCounter < Hospital.all.length + 1
       hospital = Hospital.find(hospitalCounter)
@@ -66,7 +66,8 @@ namespace :import do
           p = Procedure.find_or_create_by(name: nameArray[1]) do |procedure|
             procedure.procedure_number_string = nameArray[0]
           end
-          hp = HospitalProcedure.create(hospital_id: hospital.id,
+          hp = HospitalProcedure.create(
+            hospital_id: hospital.id,
             procedure_id: p.id,
             average_covered_charges: record.average_covered_charges,
             average_medicare_payments: record.average_medicare_payments,
@@ -88,4 +89,4 @@ namespace :import do
 end
 
 #Total hospitals: 4793
-#
+# Stopped at: 3332

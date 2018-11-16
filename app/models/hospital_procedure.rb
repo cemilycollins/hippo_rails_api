@@ -26,7 +26,7 @@ class HospitalProcedure < ApplicationRecord
   #   self.procedure.name
   # end
   #
-  # def nat_avg_cost
-  #   self.procedure.nat_avg_cost
-  # end
+  def nat_avg_cost
+    self.procedure.nat_avg_cost
+  end
 end
