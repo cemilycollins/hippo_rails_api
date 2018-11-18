@@ -165,7 +165,6 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   pry
   puma (~> 3.11)
-  rack (>= 2.0.6)
   rack-cors
   rails (~> 5.2.1)
   soda-ruby
@@ -177,4 +176,4 @@ RUBY VERSION
    ruby 2.5.1
 
 BUNDLED WITH
-   1.16.6
+   1.17.1
