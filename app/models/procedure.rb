@@ -3,22 +3,25 @@ class Procedure < ApplicationRecord
   has_many :hospitals, through: :hospital_procedures
 
   def nat_avg_cost
-    arr = []
-    self.hospital_procedures.each do |hp|
-      arr << hp.average_covered_charges
-    end
-    return arr.inject{ |sum, el| sum + el }.to_f / arr.size
+    @connection = ActiveRecord::Base.connection
+    results = @connection.exec_query("SELECT AVG(average_covered_charges) FROM hospital_procedures WHERE procedure_id = #{self.id}")
+    return results.rows[0][0]
+    # arr = []
+    # self.hospital_procedures.each do |hp|
+    #   arr << hp.average_covered_charges
+    # end
+    # return arr.inject{ |sum, el| sum + el }.to_f / arr.size
   end
 
   def total_hospitals
-    self.hospital_procedures.size
+    @connection = ActiveRecord::Base.connection
+    results = @connection.exec_query("SELECT COUNT(id) FROM hospital_procedures WHERE procedure_id = #{self.id}")
+    return results.rows[0][0]
   end
 
   def total_discharges
-    var = 0
-    self.hospital_procedures.each do |hp|
-      var += hp.total_discharges
-    end
-    return var
+    @connection = ActiveRecord::Base.connection
+    results = @connection.exec_query("SELECT SUM(total_discharges) FROM hospital_procedures WHERE procedure_id = #{self.id}")
+    return results.rows[0][0]
   end
 end
