@@ -1,6 +1,7 @@
 class Hospital < ApplicationRecord
   has_many :reviews
   has_many :hospital_procedures
+  has_many :procedures, through: :hospital_procedures
 
   validates :name, uniqueness: { scope: :zip_code}
 

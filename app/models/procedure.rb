@@ -1,5 +1,6 @@
 class Procedure < ApplicationRecord
   has_many :hospital_procedures
+  has_many :hospitals, through: :hospital_procedures
 
   def nat_avg_cost
     arr = []

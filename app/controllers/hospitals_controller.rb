@@ -14,7 +14,7 @@ class HospitalsController < ApplicationController
   end
 
   def show
-    render json: Hospital.find(params[:id]).to_json(only: [:id, :name, :street_address, :latitude, :longitude, :city, :state, :zip_code, :rating_average, :phone, :provider_number, :total_reviews],
+    render json: Hospital.includes(:reviews, :procedures).find(params[:id]).to_json(only: [:id, :name, :street_address, :latitude, :longitude, :city, :state, :zip_code, :rating_average, :phone, :provider_number, :total_reviews],
     include: [
         :reviews,
         {hospital_procedures:
