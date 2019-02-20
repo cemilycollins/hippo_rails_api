@@ -2,6 +2,12 @@ class Procedure < ApplicationRecord
   has_many :hospital_procedures
   has_many :hospitals, through: :hospital_procedures
 
+  def self.find_in_range(first, last)
+    @connection = ActiveRecord::Base.connection
+    results = @connection.exec_query("SELECT * FROM procedures WHERE id BETWEEN #{first} AND #{last}")
+    return results
+  end
+
   def nat_avg_cost
     @connection = ActiveRecord::Base.connection
     results = @connection.exec_query("SELECT AVG(average_covered_charges) FROM hospital_procedures WHERE procedure_id = #{self.id}")

@@ -15,11 +15,17 @@ class HospitalProcedure < ApplicationRecord
   # end
   #
   def hospital_avg_rating
-    self.hospital.rating_average
+    a = self.hospital.rating_average
+    self.hospital_avg_rating = a
+    self.save
+    return a
   end
   #
   def total_hospitals
-    self.procedure.total_hospitals
+    a = self.procedure.total_hospitals
+    self.total_hospitals = a
+    self.save
+    return a
   end
   #
   # def procedure_name
@@ -27,6 +33,9 @@ class HospitalProcedure < ApplicationRecord
   # end
   #
   def nat_avg_cost
-    self.procedure.nat_avg_cost
+    a = self.procedure.nat_avg_cost
+    self.nat_avg_cost = a
+    self.save
+    return a
   end
 end

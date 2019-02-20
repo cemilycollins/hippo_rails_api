@@ -15,6 +15,8 @@ class ProceduresController < ApplicationController
   end
 
   def index
-    render json: Procedure.all[params[:first].to_i..params[:last].to_i].to_json(only: [:id, :nat_avg_cost, :name, :procedure_number_string, :total_hospitals, :total_discharges])
+    first = params[:first].to_i
+    last = params[:last].to_i
+    render json: Procedure.find_in_range(first, last)
   end
 end
